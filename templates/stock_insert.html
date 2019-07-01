@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+ {% with messages = get_flashed_messages() %}
+         {% if messages %}
+            <ul>
+               {% for message in messages %}
+               <li>{{ message }}</li>
+               {% endfor %}
+            </ul>
+         {% endif %}
+      {% endwith %}
+
+<h2>STOCK</h2>
+
+<form action="http://localhost:5000/stock_insert" method ="post">
+  Product Id:<br>
+  <input type="text" name="Pro_id">
+  <br>
+  Name of the product:<br>
+  <input type="text" name="Np">
+  <br>
+  Quantity:<br>
+  <input type="text" name="Q">
+  <br>
+  Cost Price:<br>
+  <input type="text" name="Cp">
+  <br>
+   Selling price:<br>
+    <input type="text" name="Sp">
+    <br>
+   Supplier Id:<br>
+    <input type="text" name="Sup_id">
+    <br><br>
+  <input type="submit" value="Submit">
+</form> 
+<p> <a href="home">Home</a>  <a href="stock">back</a>
+</p>
+
+</body>
+</html>

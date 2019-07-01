@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<body>
+	 {% with messages = get_flashed_messages() %}
+         {% if messages %}
+            <ul>
+               {% for message in messages %}
+               <li>{{ message }}</li>
+               {% endfor %}
+            </ul>
+         {% endif %}
+      {% endwith %}
+
+
+<h2>CUSTOMER</h2>
+
+<form action="http://localhost:5000/customer_insert" method ="post">
+  Id:<br>
+  <input type="text" name="Id">
+  <br>
+  Name:<br>
+  <input type="text" name="Nm">
+  <br>
+  Address:<br>
+  <input type="text" name="Add">
+  <br>
+  Contact:<br>
+  <input type="text" name="Con">
+  <br><br>
+  <input type="submit" value="Submit">
+</form> 
+<p> <a href="home">Home</a>  <a href="customer">back</a>
+</p>
+
+</body>
+</html>

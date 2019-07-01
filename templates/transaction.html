@@ -1,0 +1,25 @@
+<html>
+<body>
+{% with messages = get_flashed_messages() %}
+         {% if messages %}
+            <ul>
+               {% for message in messages %}
+               <li>{{ message }}</li>
+               {% endfor %}
+            </ul>
+         {% endif %}
+      {% endwith %}
+
+<h2>bill</h2>
+
+<form action="http://localhost:5000/gen-bill" method="POST">
+  Customer ID:<br>
+  <input type="text" name="Cus_id">
+    <br><br>
+  <input type="submit" value="search">
+</form> 
+<p> <a href="home">Home</a>
+</p>
+
+</body>
+</html>

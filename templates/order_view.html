@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+table {
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+}
+
+td, th {
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 8px;
+}
+
+tr:nth-child(even) {
+    background-color: #dddddd;
+}
+</style>
+</head>
+<body>
+
+<h2>ORDER:</h2>
+
+<table>
+  <tr>
+    <th>Order_id</th>
+    <th>Customer_id</th>
+    <th>Product_id</th>
+    <th>Price</th>
+    <th>Quantity</th>
+    <th>Total_amount</th>
+    <th>Payment</th>
+    <th>Mode</th>
+    <th>count</th>
+  </tr>
+   {% for i,j,k,l,m,n,o,p,r in display %}
+  <tr>
+    <td>{{i}}</td>
+    <td>{{j}}</td>
+    <td>{{k}}</td>
+    <td>{{l}}</td>
+    <td>{{m}}</td>
+    <td>{{n}}</td>
+    <td>{{o}}</td>
+    <td>{{p}}</td>
+    <td>{{r}}</td>
+  </tr>
+  {% endfor %}
+
+  
+</table>
+<p> <a href="home">Home</a>  <a href="order">back</a>
+</p>
+
+</body>
+</html>

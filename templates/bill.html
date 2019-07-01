@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+table {
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+        width:70%; 
+    margin-left:15%; 
+    margin-right:15%;
+}
+h2 {
+	text-align:center;}
+
+td, th {
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 8px;
+}
+
+tr:nth-child(even) {
+    background-color: #dddddd;
+}
+</style>
+</head>
+<body>
+
+<h2>Bill</h2>
+
+<table>
+  <tr>
+    <th>Product ID</th>
+    <th>Product Name</th>
+    <th>Quantity</th>
+    <th>Total Price</th>
+    <th>Payment</th>
+  </tr>
+   {% for i,j,k,l,m in display %}
+  <tr>
+    <td>{{i}}</td>
+    <td>{{j}}</td>
+    <td>{{k}}</td>
+    <td>{{l}}</td>
+    <td>{{m}}</td>
+  </tr>
+  {% endfor %}
+ 
+</table>
+<p> <a href="home">Home</a>  <a href="bill">back</a>
+</p>
+
+</body>
+</html>

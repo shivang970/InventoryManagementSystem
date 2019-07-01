@@ -1,0 +1,53 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+table {
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+}
+
+td, th {
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 8px;
+}
+
+tr:nth-child(even) {
+    background-color: #dddddd;
+}
+</style>
+</head>
+<body>
+
+<h2>STOCK:</h2>
+
+<table>
+  <tr>
+    <th>Product_id</th>
+    <th>Name_of_the_product</th>
+    <th>Quantity</th>
+    <th>Cost_price</th>
+    <th>Selling_price</th>
+    <th>Supplier_id</th>
+  </tr>
+   {% for i,j,k,l,m,n in display %}
+  <tr>
+    <td>{{i}}</td>
+    <td>{{j}}</td>
+    <td>{{k}}</td>
+    <td>{{l}}</td>
+    <td>{{m}}</td>
+    <td>{{n}}</td>
+  </tr>
+  {% endfor %}
+
+  
+</table>
+<p> <a href="home">Home</a>  <a href="stock">back</a>
+</p>
+
+</body>
+</html>
