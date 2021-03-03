@@ -18,6 +18,7 @@ conn = mysql.connect()
 @app.route('/')
 def login():
     return render_template("login_form.html")
+
 @app.route('/login',methods=['POST','GET'])
 def admin():
     if request.method=='POST':
@@ -29,6 +30,7 @@ def admin():
         else:
             flash('incorrect username or password')
             return redirect(url_for('login'))
+
 @app.route('/home')
 def home():
     cursor=conn.cursor()
