@@ -10,6 +10,8 @@ app.config['MYSQL_DATABASE_USER']='root'
 app.config['MYSQL_DATABASE_PASSWORD']='Shiva@94720'
 app.config['MYSQL_DATABASE_DB']='ims'
 app.config['MYSQL_DATABASE_HOST']='localhost'
+
+# initilize app to mysql
 mysql.init_app(app)
 
 conn = mysql.connect()
