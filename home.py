@@ -72,6 +72,7 @@ def oview():
     cursor.execute("select * from `order`")
     disp = cursor.fetchall()
     return render_template("order_view.html",display = disp)
+
 #end order_view
 
 #supplier_view
@@ -86,12 +87,14 @@ def suview():
 #end supplier_view
 
 #customer_view
+
 @app.route('/customer_view')
 def cview():
     cursor = conn.cursor()
     cursor.execute("select * from customer_details")
     disp = cursor.fetchall()
     return render_template("customer_view.html",display = disp)
+
 #end customer_view
 
 #stock_insert
@@ -134,6 +137,7 @@ def insert_s():
 #end stock_insert 
 
 #customer_insert
+
 @app.route('/cus')
 def index_c():
     return render_template('customer_insert.html')
@@ -163,6 +167,7 @@ def insert_c():
 #end customer_insert
 
 #order_insert
+
 @app.route('/or')
 def index_o():
     return render_template('order_insert.html')
@@ -219,6 +224,7 @@ def insert_o():
 
 
 #end order_insert
+
 #supplier_insert
 
 @app.route('/sup')
@@ -251,6 +257,7 @@ def insert_su():
 #end supplier_insert
 
 #transaction
+
 @app.route('/bill')
 def index_t():
     return render_template('transaction.html')
@@ -274,6 +281,7 @@ def genbill():
 #end transaction
 
 # update stock
+
 @app.route('/up')
 def index_u():
     return render_template('update.html')
