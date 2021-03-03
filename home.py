@@ -4,7 +4,9 @@ from flaskext.mysql import MySQL
 app = Flask(__name__)
 app.secret_key = 'random string'
 #app.config["DEBUG"] = True
+
 mysql=MySQL()
+
 #configure db
 app.config['MYSQL_DATABASE_USER']='root'
 app.config['MYSQL_DATABASE_PASSWORD']='Shiva@94720'
@@ -15,6 +17,7 @@ app.config['MYSQL_DATABASE_HOST']='localhost'
 mysql.init_app(app)
 
 conn = mysql.connect()
+
 @app.route('/')
 def login():
     return render_template("login_form.html")
