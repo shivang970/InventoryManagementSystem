@@ -103,31 +103,42 @@ def index_s():
 def insert_s():
     if request.method=='POST':
         userdetails = request.form
+
         Id = userdetails['Pro_id']
         cp = userdetails['Cp']
         np = userdetails['Np']
         sp = userdetails['Sp']
         q = userdetails['Q']
         sid = userdetails['Sup_id']
+
         cursor = conn.cursor()
+
         query1="select product_id from stock_avail where product_id = %s"
         query2="select id from supplier_details where id=%s"
+
         cursor.execute(query1,(Id))
+
         data1=cursor.fetchone()
+
         cursor.execute(query2,(sid))
+
         data2=cursor.fetchone()
+
         if data1==None:
             if data2!=None:
                 cursor.execute("insert into stock_avail(product_id,name_of_the_product,Quantity,Cost_price,Selling_price,Supplier_id) values(%s,%s,%s,%s,%s,%s)",(Id,np,q,cp,sp,sid))
                 conn.commit()
                 cursor.close()
                 flash('stock inserted')
+
                 return redirect(url_for('index_s'))
             else:
                 flash('supplier does not exist')
+
                 return redirect(url_for('index_s'))
         else:
             flash('item already exist')
+
             return render_template('stock_insert.html')
 
 #end stock_insert 
@@ -141,22 +152,30 @@ def index_c():
 def insert_c():
     if request.method=='POST':
         userdetails = request.form
+
         Id = userdetails['Id']
         name = userdetails['Nm']
         add = userdetails['Add']
         con = userdetails['Con']
+
         cursor = conn.cursor()
+
         query="select id from customer_details where id = %s"
+
         cursor.execute(query,(Id))
+
         data=cursor.fetchone()
+
         if data==None:
             cursor.execute("insert into customer_details(id,name,address,contact) values(%s,%s,%s,%s)",(Id,name,add,con))
             conn.commit()
             cursor.close()
             flash('customer inserted')
+
             return redirect(url_for('index_c'))
         else:
             flash('customer already exist')
+
             return render_template('customer_insert.html')
 
 #end customer_insert
@@ -170,6 +189,7 @@ def index_o():
 def insert_o():
     if request.method=='POST':
         userdetails = request.form
+
         oid = userdetails['or_id'] #order_id
         cid = userdetails['cus_id'] #customer_id
         pid = userdetails['pro_id'] #product_id
@@ -178,21 +198,37 @@ def insert_o():
         t_a = userdetails['t_a'] #total_amount
         pt = userdetails['pt'] #payment
         md = userdetails['md'] #mode
+
         cursor = conn.cursor()
+
         query1="select id from customer_details where id=%s"
+
         query2="select id from `order` where id = %s"
+
         query3="select product_id from stock_avail where product_id=%s"
+
         query4="select quantity from stock_avail where product_id=%s"
+
         cursor.execute(query1,(cid))
+
         data1=cursor.fetchone()
+
         cursor.execute(query2,(oid))
+
         data2=cursor.fetchone()
+
         cursor.execute(query3,(pid))
+
         data3=cursor.fetchone()
+
         cursor.execute(query4,(pid))
+
         data4=cursor.fetchone()
+
         print(data1,data2,data3)
+
         n=int(Q)
+
         if data2==None:
             if data1!=None:
                 if data3!=None:
@@ -202,18 +238,23 @@ def insert_o():
                         conn.commit()
                         cursor.close()
                         flash('order placed')
+
                         return redirect(url_for('index_o'))
                     else:
                         flash('not enough stock')
+
                         return redirect(url_for('index_o'))
                 else:
                     flash('product does not exist')
+
                     return redirect(url_for('index_o'))
             else:
                 flash('customer does not exist')
+
                 return redirect(url_for('index_o'))
         else:
             flash('order already exist')
+
             return render_template('order_insert.html')
 
 
@@ -228,22 +269,30 @@ def index_su():
 def insert_su():
     if request.method=='POST':
         userdetails = request.form
+
         Id = userdetails['Id']
         nm = userdetails['Nm']
         add = userdetails['Add']
         con = userdetails['Con']
+
         cursor = conn.cursor()
+
         query="select id from supplier_details where id = %s"
+
         cursor.execute(query,(Id))
+
         data=cursor.fetchone()
+
         if data==None:
             cursor.execute("insert into supplier_details(id,supplier_name,supplier_address,supplier_contact1) values(%s,%s,%s,%s)",(Id,nm,add,con))
             conn.commit()
             cursor.close()
             flash('supplier inserted')
+
             return redirect(url_for('index_su'))
         else:
             flash('supplier already exist')
+
             return render_template('supplier_insert.html')
 
 
@@ -258,17 +307,25 @@ def index_t():
 def genbill():
      if request.method=='POST':
         userdetails = request.form
+
         Id = userdetails['Cus_id']
+
         cursor = conn.cursor()
+
         query="select customer_id from `order` where customer_id = %s"
+
         cursor.execute(query,(Id))
+
         data=cursor.fetchone()
+
         if data!=None:
             cursor.callproc("genbill",(Id))
             disp=cursor.fetchall()
+
             return render_template('bill.html',display=disp)
         else:
             flash('No order has been placed with this is')
+
             return redirect(url_for('index_t'))
 #end transaction
 
@@ -280,21 +337,29 @@ def index_u():
 def update():
     if request.method=='POST':
         userdetails = request.form
+
         pro_id = userdetails['Pro_id']
         Q = userdetails['Q']
+
         cursor = conn.cursor()
+
         query="select product_id from stock_avail where product_id = %s"
+
         cursor.execute(query,(pro_id))
+
         data=cursor.fetchone()
+
         if data!=None:
             q="update stock_avail set quantity=%s where product_id=%s"
             cursor.execute(q,(Q,pro_id))
             conn.commit()
             cursor.close()
             flash('stock updated')
+
             return redirect(url_for('index_u'))
         else:
             flash('product does not exist')
+
             return render_template('update.html')
 
 if __name__== '__main__':
