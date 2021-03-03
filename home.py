@@ -37,15 +37,19 @@ def home():
     cursor.execute("select * from stock")
     disp = cursor.fetchall()
     return render_template("home.html",display = disp)
+
 @app.route('/customer')
 def customer():
     return render_template("customer.html")
+
 @app.route('/stock')
 def stock():
     return render_template("stock.html")
+
 @app.route('/supplier')
 def supplier():
     return render_template("supplier.html")
+
 @app.route('/order')
 def order():
     return render_template("order.html")
