@@ -4,7 +4,9 @@ from flaskext.mysql import MySQL
 
 
 app = Flask(__name__)
+
 app.secret_key = 'random string'
+
 #app.config["DEBUG"] = True
 
 mysql=MySQL()
