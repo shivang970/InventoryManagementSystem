@@ -1,5 +1,7 @@
 from flask import Flask, flash, render_template, request, redirect, url_for
+
 from flaskext.mysql import MySQL
+
 
 app = Flask(__name__)
 app.secret_key = 'random string'
